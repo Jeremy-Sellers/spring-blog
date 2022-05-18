@@ -1,9 +1,8 @@
 package com.codeup.springblog.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
 
 @Controller
 //any request to /hello will be handled by this entire controller
@@ -19,11 +18,19 @@ public class HelloController {
     //putting name in curly brackets makes system assume it will be a variable
     //if RequestMapping entire class, can use GetMapping("/{name}) instead as function
     //will use the class RequestMapping as its base
-    @GetMapping("/hello/{name}")
-    //responsebody outputs text string to link
-    @ResponseBody
-    public String sayHello(@PathVariable String name){
-        return "Hello " + name + "!";
+//    @GetMapping("/hello/{name}")
+//    //responsebody outputs text string to link
+//    @ResponseBody
+//    public String sayHello(@PathVariable String name)
+//    {
+//        return "Hello " + name + "!";
+//    }
+
+    //when going to /hello/name will attempt to connect to hello.html and display the html
+    @GetMapping("/{name}")
+    public String sayHello(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
     }
 
 //    @GetMapping("/random")
