@@ -15,6 +15,11 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
+    //In your User and Post classes, define the post - user relationship.
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Post(String title, String body){
         this.title = title;
         this.body = body;
@@ -50,5 +55,13 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
