@@ -3,13 +3,13 @@
 <head th:replace="partials/partials.html::head ('create a post')"></head>
 <body>
 
-<form action="/posts/create" method="post">
-    <label for="title">Post title:</label>
-    <input type="text" name="title" id="title">
-
-    <label for="body">Content:</label>
-    <textarea name="body" id="body"></textarea>
-
+<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+    Post Title:
+    <input th:field="*{title}">
+    <br>
+    Description:
+    <input th:field="*{body}">
+    <br>
     <input type="submit" value="Post">
 </form>
 
